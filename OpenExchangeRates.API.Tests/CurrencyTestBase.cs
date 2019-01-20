@@ -41,7 +41,7 @@ namespace OpenExchangeRates.API.Tests
                 Hostname = Environment.MachineName,
             };
 
-            var auth = "elastic:bo03aQ5b7h31kbFx2QkjqEsN";
+            var auth = "elastic:elastic-cloud-password";
             var token = Base64Encode(auth);
 
             Log.Logger = new LoggerConfiguration()

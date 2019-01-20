@@ -10,7 +10,7 @@ using Serilog;
 using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 
-namespace OpenExchangeRates.Tests
+namespace OpenExchangeRates.API.Tests
 {
     public abstract class CurrencyTestBase
     {

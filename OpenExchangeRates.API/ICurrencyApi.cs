@@ -2,7 +2,7 @@
 using Agile.API.Client.CallHandling;
 using Apis.OpenExchanges.Models.Generated;
 
-namespace Apis.OpenExchanges
+namespace OpenExchangeRates.API
 {
     public interface ICurrencyApi
     {

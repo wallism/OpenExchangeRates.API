@@ -4,7 +4,7 @@ using Apis.OpenExchanges;
 using Apis.OpenExchanges.Models.Generated;
 using NUnit.Framework;
 
-namespace OpenExchangeRates.Tests
+namespace OpenExchangeRates.API.Tests
 {
     [TestFixture]
     public class GetCurrencyRatesTests : CurrencyTestBase

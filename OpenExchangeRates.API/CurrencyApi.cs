@@ -4,7 +4,7 @@ using Agile.API.Client.CallHandling;
 using Apis.OpenExchanges.Models.Generated;
 using Serilog;
 
-namespace Apis.OpenExchanges
+namespace OpenExchangeRates.API
 {
     public class CurrencyApi : ApiBase, ICurrencyApi
     {

@@ -13,4 +13,8 @@
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Agile.API.Clients\Agile.API.Clients\Agile.API.Clients.csproj" />
+  </ItemGroup>
+
 </Project>

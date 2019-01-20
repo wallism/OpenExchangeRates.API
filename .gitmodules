@@ -1,0 +1,3 @@
+[submodule "Agile.API.Clients"]
+	path = Agile.API.Clients
+	url = https://github.com/wallism/Agile.API.Clients.git

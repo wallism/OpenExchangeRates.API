@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenExchangeRates.API", "Op
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenExchangeRates.API.Tests", "OpenExchangeRates.API.Tests\OpenExchangeRates.API.Tests.csproj", "{AB55D4FC-C221-4D37-ABE5-A68AB19AC9FC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agile.API.Clients", "Agile.API.Clients\Agile.API.Clients\Agile.API.Clients.csproj", "{A91BE42E-F272-4431-B7CE-9664CDCD20C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{AB55D4FC-C221-4D37-ABE5-A68AB19AC9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB55D4FC-C221-4D37-ABE5-A68AB19AC9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB55D4FC-C221-4D37-ABE5-A68AB19AC9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A91BE42E-F272-4431-B7CE-9664CDCD20C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A91BE42E-F272-4431-B7CE-9664CDCD20C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A91BE42E-F272-4431-B7CE-9664CDCD20C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A91BE42E-F272-4431-B7CE-9664CDCD20C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

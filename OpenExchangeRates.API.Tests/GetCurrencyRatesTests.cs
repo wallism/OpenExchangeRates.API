@@ -1,8 +1,6 @@
 using System.Threading.Tasks;
-using Agile.API.Client.CallHandling;
-using Apis.OpenExchanges;
-using Apis.OpenExchanges.Models.Generated;
 using NUnit.Framework;
+using Serilog;
 
 namespace OpenExchangeRates.API.Tests
 {
@@ -13,23 +11,22 @@ namespace OpenExchangeRates.API.Tests
         [Test]
         public async Task IntegrationQuickTest()
         {
-            var api = new CurrencyApi();
-            api.Initialize("use-a-valid-key");
+            var api = new CurrencyApi("");
             var result = await api.GetCurrencyRates();
             Assert.IsNotNull(result);
-            Assert.IsTrue(result is JsonCallResult<CurrencyRates>);
+            Assert.IsTrue(result.Value != null);
             Assert.IsTrue(result.WasSuccessful);
+            Log.Logger.Debug("{@Value}", result.Value);
         }
 
         [Test]
         public async Task InvalidKeyProducesCallErrorResult()
         {
-            var api = new CurrencyApi();
-            api.Initialize("invalid-api-key");
+            var api = new CurrencyApi("invalid-api-key");
             var result = await api.GetCurrencyRates();
             Assert.IsNotNull(result);
-            Assert.IsTrue(result is CallErrorResult<CurrencyRates>);
             Assert.IsFalse(result.WasSuccessful);
+            Assert.IsTrue(result.Exception != null);
 
         }
     }

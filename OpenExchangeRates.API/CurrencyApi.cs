@@ -1,36 +1,44 @@
-﻿using System.Threading.Tasks;
-using Agile.API.Client;
-using Agile.API.Client.CallHandling;
+﻿using System;
+using System.Threading.Tasks;
+using Agile.API.Clients;
+using Agile.API.Clients.CallHandling;
 using Apis.OpenExchanges.Models.Generated;
+using PennedObjects.RateLimiting;
 using Serilog;
 
 namespace OpenExchangeRates.API
 {
     public class CurrencyApi : ApiBase, ICurrencyApi
     {
-        public CurrencyApi() 
+        public CurrencyApi(string apiKey, RateLimit rateLimit) : base(apiKey, rateLimit)
         {
+            getLatest = PublicGet<CurrencyRates>(MethodPriority.Normal);
+        }
+
+        public CurrencyApi(string apiKey) : this(apiKey, RateLimit.Build(1, TimeSpan.FromSeconds(1)))
+        {
+            getLatest = PublicGet<CurrencyRates>(MethodPriority.Normal);
         }
 
         protected override string BaseUrl => "https://openexchangerates.org/api";
-        public override string Code => "CRNC";
+        public override string ApiId => "CRNC";
 
 
-        private readonly ApiMethod getLatest = ApiMethod.Private(false);
+        private readonly ApiMethod<CurrencyRates> getLatest;
 
-        public async Task<ServiceCallResult<CurrencyRates>> GetCurrencyRates()
+        public async Task<CallResult<CurrencyRates>> GetCurrencyRates()
         {
             var querystring = $"app_id={ApiKey}";
-            var result = await Get<CurrencyRates>(getLatest, "latest.json", querystring);
+            var result = await getLatest.Call("latest.json", "", querystring);
             return result;
         }
 
-        protected override void NotifyErrorHandler<T>(ServiceCallResult<T> errorResult)
+        protected override void NotifyError<T>(CallResult<T> result)
         {
             const string apiName = "CurrencyApi";
-            Log.Error(errorResult.Exception, "{Api} {StatusCode} {Elapsed}ms", apiName, errorResult.StatusCode, errorResult.Elapsed);
-            if(! string.IsNullOrWhiteSpace(errorResult.RawText))
-                Log.Warning("{Api} {RawText}", apiName, errorResult.RawText);
+            Log.Error(result.Exception, "{Api} {Uri} {StatusCode} {Elapsed}ms {RawText}", apiName, result.AbsoluteUri, result.StatusCode, result.Elapsed, result.RawText ?? "");
         }
+
+
     }
 }

@@ -11,7 +11,10 @@ namespace OpenExchangeRates.API.Tests
         [Test]
         public async Task IntegrationQuickTest()
         {
-            var api = new CurrencyApi("");
+            var apiKey = Configuration["appSecrets:OpenExchangeRates.ApiKey"];
+            Log.Logger.Information(apiKey);
+
+            var api = new CurrencyApi(apiKey);
             var result = await api.GetCurrencyRates();
             Assert.IsNotNull(result);
             Assert.IsTrue(result.Value != null);

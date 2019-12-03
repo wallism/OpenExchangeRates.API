@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OpenExchangeRates.API.Tests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "Key": "Value"
+      }
+    }
+  }
+}

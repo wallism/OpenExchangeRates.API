@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Agile.API.Clients;
 using Agile.API.Clients.CallHandling;
@@ -12,24 +13,26 @@ namespace OpenExchangeRates.API
     {
         public CurrencyApi(string apiKey, RateLimit rateLimit) : base(apiKey, rateLimit)
         {
-            getLatest = PublicGet<CurrencyRates>(MethodPriority.Normal);
+            getLatest = PrivateGet<CurrencyRates>(MethodPriority.Normal);
         }
 
         public CurrencyApi(string apiKey) : this(apiKey, RateLimit.Build(1, TimeSpan.FromSeconds(1)))
         {
-            getLatest = PublicGet<CurrencyRates>(MethodPriority.Normal);
         }
 
         protected override string BaseUrl => "https://openexchangerates.org/api";
         public override string ApiId => "CRNC";
 
+        protected override void SetPrivateRequestProperties(HttpRequestMessage request, string method, object rawPayload = null, string propsWithNonce = "")
+        {
+            // nothing to do for OpenExchange api, creds provided as querystring
+        }
 
         private readonly ApiMethod<CurrencyRates> getLatest;
 
         public async Task<CallResult<CurrencyRates>> GetCurrencyRates()
         {
-            var querystring = $"app_id={ApiKey}";
-            var result = await getLatest.Call("latest.json", "", querystring);
+            var result = await getLatest.Call("latest.json", "", $"app_id={ApiKey}");
             return result;
         }
 

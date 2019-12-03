@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Apis.OpenExchanges.Models.Generated
+namespace OpenExchangeRates.API.Models.Generated
 {
     // To parse this JSON data, add NuGet 'Newtonsoft.Json' then do:
     //
@@ -21,20 +16,20 @@ namespace Apis.OpenExchanges.Models.Generated
 
     public partial class CurrencyRates
     {
-        [JsonProperty("disclaimer")]
-        public string Disclaimer { get; set; }
+        [JsonProperty("disclaimer")] 
+        public string Disclaimer { get; set; } = string.Empty;
 
         [JsonProperty("rates")]
-        public Rates Rates { get; set; }
+        public Rates Rates { get; set; } = new Rates();
 
         [JsonProperty("base")]
-        public string Base { get; set; }
+        public string Base { get; set; } = string.Empty;
 
         [JsonProperty("license")]
-        public string License { get; set; }
+        public string License { get; set; } = string.Empty;
 
         [JsonProperty("timestamp")]
-        public long Timestamp { get; set; }
+        public long Timestamp { get; set; } = 0;
     }
 
     public partial class Rates

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Agile.API.Clients;
 using Agile.API.Clients.CallHandling;
-using Apis.OpenExchanges.Models.Generated;
+using OpenExchangeRates.API.Models.Generated;
 using PennedObjects.RateLimiting;
 using Serilog;
 
